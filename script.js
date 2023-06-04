@@ -1,5 +1,6 @@
 //You can edit ALL of the code here
 const allEpisodes = getAllEpisodes();
+const tvmazeLink = "https://www.tvmaze.com";
 
 function setup() {
   makePageForEpisodes(allEpisodes);
@@ -22,19 +23,24 @@ function makePageForEpisodes(episodeList) {
   
   const p = document.createElement('p');
   p.textContent = episode.summary;
-  p.style.width ='250px'
-  p.style.width = "250px";
+  // p.style.width ='250px'
+  // p.style.width = "250px";
 
 const episodeCode = generateEpisodeCode(episode.season, episode.number);
 const episodeCodeElem = document.createElement("p");
 episodeCodeElem.textContent = episodeCode;
+
 
   episodeDiv.appendChild(h1);
   episodeDiv.appendChild(episodeCodeElem);
   episodeDiv.appendChild(img);
   episodeDiv.appendChild(p);
   rootElem.appendChild(episodeDiv);
+
 });
+ const attribution = document.createElement("p");
+ attribution.innerHTML = `Data provided by <a href="${tvmazeLink}" target="_blank">TVMaze.com</a>`;
+ rootElem.appendChild(attribution);
 }
 function generateEpisodeCode(seasonNumber, episodeNumber) {
   const paddedSeason = seasonNumber.toString().padStart(2, "0");
@@ -42,4 +48,5 @@ function generateEpisodeCode(seasonNumber, episodeNumber) {
   const episodeCode = `S${paddedSeason}E${paddedEpisode}`;
   return episodeCode;
 }
+
 window.onload = setup;
